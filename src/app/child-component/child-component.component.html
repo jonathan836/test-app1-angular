@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div>
+        {{index + 1}}. {{listEmployee.name}} {{listEmployee.lastname}} {{listEmployee.position}} {{listEmployee.salary}}
+        <a [routerLink]="[ '/update', index]" [queryParams]="{action: '1'}">
+          Upgrade
+        </a>
+
+        <a [routerLink]="[ '/update', index]" [queryParams]="{action: '2'}">
+          Delete
+        </a>
+      </div>
+
+      <app-features-employee (featuresEmployee)="addFeature($event)"></app-features-employee>
+
+      <ul style="list-style: none;">
+        <li *ngFor="let feature of arrayFeatures">{{feature}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

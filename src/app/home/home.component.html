@@ -1,0 +1,99 @@
+<div class="container">
+    <form action="">
+      Number 1: <input type="text" name="n1" [(ngModel)] = 'n1'>
+      <br> <br>
+      Number 2: <input type="text" name="n2" [(ngModel)] = 'n2'>
+    
+      <input type="submit" value="Submit" (click)="sum()" class="btn btn-primary">
+    
+      <h1>{{ result }}</h1>
+    </form>
+  </div>
+  
+  <div class="container">
+    <form action="">
+      Nombre: <input type="text" name="Nombre" [(ngModel)]="name1">
+      <br>
+      Apellido: <input type="text" name="Apellido" [(ngModel)]="lastname1">
+      <br>
+      Cargo: <input type="text" name="Cargo" [(ngModel)]="position1">
+      <br>
+      <input type="submit" value="Submit" (click)="registedUser()">
+    </form>
+  </div>
+  
+  <p *ngIf="registed; else notRegisted" style="text-align: center;">
+    {{message2}} {{ name1 }} {{lastname1}}
+    <span [ngStyle]="{color: position1 == 'director' ? 'red' : 'black'}">
+      {{ position1 }}
+    </span>
+  
+    <span [ngClass]="{forDirector: position1 == 'director'}">
+      {{ position1 }}
+    </span>
+  </p>
+  
+  <ng-template #notRegisted>
+    <p>
+      Nobody registed
+    </p>
+  </ng-template>
+  
+  <ul>
+    <li *ngFor="let title of titles; let i = index">
+      <span style="font-size: larger; font-weight: bold;">
+        {{title.message}}
+      </span>
+      . Entrada {{i}}
+    </li>
+  </ul>
+  
+  
+  <div class="container">
+    <div class="col">
+      <h1>Titulo</h1>
+    </div>
+    <form action="" class="form-group row">
+      <div class="form-group col-md-3">
+        <label for="name">Nombre: </label> <br>
+        <input type="text" name="name" id="name" placeholder="Name" class="form-control" [(ngModel)]="textName">
+      </div>
+  
+      <div class="form-group col-md-3">
+        <label for="lastname">Apellido: </label>
+        <input type="text" name="lastname" id="lastname" placeholder="Lastname" class="form-control" [(ngModel)]="textLastName">
+      </div>
+  
+      <div class="form-group col-md-3">
+        <label for="position">Cargo: </label>
+        <input type="text" name="position" id="position" placeholder="Position" class="form-control" [(ngModel)]="textPosition">
+      </div>
+  
+      <div class="form-group col-md-3">
+        <label for="salary">Salario: </label>
+        <input type="number" name="salary" id="salary" placeholder="Salaty" class="form-control" [(ngModel)]="textSalary">
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary" (click)="addEmployee()" style="margin-top: 35px;">Add</button>
+          <button type="submit" class="btn btn-primary" (click)="deleteEmployee()" style="margin-top: 35px;">Delete</button>
+        </div>
+      </div> 
+    </form>
+  </div>
+  
+  <app-child-component *ngFor="let empleado of empleados; let i = index" [listEmployee]="empleado" [index]="i"></app-child-component>
+  
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col">
+        <div *ngFor="let empleado of empleados; let i = index">
+          {{i + 1}}. {{empleado.name}}
+          {{empleado.lastname}}
+          {{empleado.position}}
+          {{empleado.salary}}
+        </div>
+      </div>
+    </div>
+  </div> -->
